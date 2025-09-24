@@ -1,6 +1,6 @@
-# Columbus Quest - Interview Practice App
+# Columbus Quest - OBM Interview App
 
-## Core Features (MVP)
+## Core Features
 1. **User Registration/Auth** - Basic user system
 2. **Location-Based Quests** - Find nearby quest locations
 3. **Check-in System** - Users can check in at quest locations
