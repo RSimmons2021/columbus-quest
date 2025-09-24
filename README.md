@@ -1,5 +1,9 @@
 # Columbus Quest - OBM Interview App
 
+
+## Overview
+A gamified city discovery platform for Columbus, Ohio. Users explore the city by checking into quest locations, earning points, and competing on leaderboards.
+
 ## Core Features
 1. **User Registration/Auth** - Basic user system
 2. **Location-Based Quests** - Find nearby quest locations
