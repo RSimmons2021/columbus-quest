@@ -22,6 +22,40 @@ backend/     # Rails API
 frontend/    # React app
 ```
 
+## Getting Started
+
+### Prerequisites
+- Node.js and npm
+- Ruby on Rails
+- PostgreSQL
+
+### Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/RSimmons2021/Orange-Barrel-Media-Full-Stack-Project
+   cd columbus-quest
+   ```
+
+2. **Start the backend**
+   ```bash
+   cd backend
+   bundle install
+   rails db:create db:migrate
+   rails s -p 3001
+   ```
+
+3. **Start the frontend** (in a new terminal)
+   ```bash
+   cd frontend
+   npm install
+   npm start
+   ```
+
+4. **Access the app**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:3001
+
 ## Features to Add
 - Social features
 - Achievement system
