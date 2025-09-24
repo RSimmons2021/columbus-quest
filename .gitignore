@@ -1,0 +1,96 @@
+# Dependencies
+node_modules/
+*/node_modules/
+INTERVIEW_DEMO_GUIDE.md
+.claude
+
+# Production builds
+/build
+/dist
+frontend/build/
+frontend/dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Rails specific
+backend/log/*
+backend/tmp/*
+backend/storage/*
+!backend/log/.keep
+!backend/tmp/.keep
+!backend/storage/.keep
+backend/config/master.key
+backend/config/credentials.yml.enc
+
+# Database
+backend/db/*.sqlite3
+backend/db/*.sqlite3-journal
+backend/db/*.sqlite3-*
+
+# Ignore bundler config.
+backend/.bundle
+
+# Ignore all logfiles and tempfiles.
+backend/log/*
+backend/tmp/*
+backend/storage/*
+backend/config/credentials.yml.enc
+
+# Ignore precompiled assets.
+backend/public/assets
+backend/public/packs
+backend/public/packs-test
+
+# Ignore yarn files
+yarn-error.log
+
+# Ignore Spring files
+backend/spring/*.pid
+
+# Ignore uploaded files in development
+backend/storage/*
+
+# Ignore master key for decrypting credentials and more.
+backend/config/master.key
+
+# Ignore application configuration
+backend/config/application.yml
