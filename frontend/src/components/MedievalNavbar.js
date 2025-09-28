@@ -22,11 +22,11 @@ const MedievalNavbar = () => {
   }, []);
 
   const navItems = [
-    { path: '/', label: 'Guild Hall', icon: Home },
+    { path: '/', label: 'Home', icon: Home },
     { path: '/quests', label: 'Quest Board', icon: Scroll },
     { path: '/map', label: 'Map', icon: Map },
-    { path: '/progress', label: 'Chronicle', icon: BarChart3 },
-    { path: '/leaderboard', label: 'Hall of Fame', icon: Trophy }
+    { path: '/progress', label: 'Progress', icon: BarChart3 },
+    { path: '/leaderboard', label: 'Leaderboard', icon: Trophy }
   ];
 
   const accentColors = [
@@ -62,18 +62,47 @@ const MedievalNavbar = () => {
         }}
         transition={{ duration: 0.3 }}
       >
-        {/* Decorative border pattern */}
+        {/* Decorative border patterns */}
         <div
           className="absolute bottom-0 left-0 right-0 h-1"
           style={{
-            background: `linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.6), transparent)`,
+            background: `linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.8), transparent)`,
             backgroundSize: '100% 100%'
           }}
         />
+        <div
+          className="absolute top-0 left-0 right-0 h-px"
+          style={{
+            background: `linear-gradient(90deg, transparent, rgba(218, 165, 32, 0.4), transparent)`,
+          }}
+        />
 
-        <div className="container mx-auto px-6 py-3">
-          <div className="flex items-center justify-between">
-            {/* Guild Logo */}
+        {/* Decorative corner flourishes */}
+        <div className="absolute top-2 left-4 w-3 h-3 opacity-40">
+          <div
+            className="w-full h-px rounded"
+            style={{ background: `rgb(var(--accent-color))` }}
+          />
+          <div
+            className="w-px h-full rounded absolute top-0 left-0"
+            style={{ background: `rgb(var(--accent-color))` }}
+          />
+        </div>
+        <div className="absolute top-2 right-4 w-3 h-3 opacity-40">
+          <div
+            className="w-full h-px rounded"
+            style={{ background: `rgb(var(--accent-color))` }}
+          />
+          <div
+            className="w-px h-full rounded absolute top-0 right-0"
+            style={{ background: `rgb(var(--accent-color))` }}
+          />
+        </div>
+
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between w-full max-w-6xl mx-auto">
+
+            {/* Left - Guild Logo */}
             <motion.div
               className="flex items-center space-x-3"
               whileHover={{ scale: 1.02 }}
@@ -82,10 +111,10 @@ const MedievalNavbar = () => {
                 <motion.div
                   className="relative"
                   animate={{
-                    rotateY: [0, 5, -5, 0]
+                    rotateY: [0, 3, -3, 0]
                   }}
                   transition={{
-                    duration: 8,
+                    duration: 10,
                     repeat: Infinity,
                     ease: 'easeInOut'
                   }}
@@ -94,22 +123,14 @@ const MedievalNavbar = () => {
                     className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl font-bold border-2"
                     style={{
                       background: isDarkMode
-                        ? 'linear-gradient(135deg, rgba(60, 50, 35, 0.8), rgba(45, 35, 25, 0.9))'
-                        : 'linear-gradient(135deg, rgba(250, 245, 235, 0.9), rgba(240, 230, 210, 0.8))',
-                      borderColor: `rgba(var(--accent-color), 0.6)`,
-                      boxShadow: `0 0 15px rgba(var(--accent-color), 0.2)`
+                        ? 'linear-gradient(135deg, rgba(60, 50, 35, 0.9), rgba(45, 35, 25, 0.95))'
+                        : 'linear-gradient(135deg, rgba(250, 245, 235, 0.95), rgba(240, 230, 210, 0.9))',
+                      borderColor: `rgba(var(--accent-color), 0.7)`,
+                      boxShadow: `0 0 20px rgba(var(--accent-color), 0.3)`
                     }}
                   >
                     🏛️
                   </div>
-
-                  {/* Guild crest overlay */}
-                  <div
-                    className="absolute inset-0 rounded-lg border opacity-40"
-                    style={{
-                      borderColor: `rgba(var(--accent-color), 0.3)`
-                    }}
-                  />
                 </motion.div>
 
                 <div>
@@ -117,7 +138,8 @@ const MedievalNavbar = () => {
                     className="text-xl font-bold"
                     style={{
                       color: isDarkMode ? 'rgb(245, 240, 220)' : 'rgb(40, 30, 20)',
-                      textShadow: `0 1px 3px rgba(var(--accent-color), 0.3)`
+                      textShadow: `0 1px 3px rgba(var(--accent-color), 0.3)`,
+                      fontFamily: 'serif'
                     }}
                   >
                     Columbus Quest
@@ -125,101 +147,90 @@ const MedievalNavbar = () => {
                   <motion.p
                     className="text-xs font-medium opacity-70"
                     style={{
-                      color: isDarkMode ? 'rgb(200, 185, 160)' : 'rgb(80, 65, 45)'
+                      color: isDarkMode ? 'rgb(200, 185, 160)' : 'rgb(80, 65, 45)',
+                      fontStyle: 'italic'
                     }}
                   >
-                    Explorer's Guild
+                    Guild Hall
                   </motion.p>
                 </div>
               </Link>
             </motion.div>
 
-            {/* Navigation Links - Medieval style */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item, index) => {
-                const Icon = item.icon;
-                const isActive = location.pathname === item.path;
+            {/* Center - Navigation Links */}
+            <div className="hidden md:flex items-center justify-center flex-1 mx-8">
+              <div className="flex items-center space-x-1 bg-black/10 dark:bg-white/5 backdrop-blur-sm rounded-full px-4 py-2 border border-black/10 dark:border-white/10">
+                {navItems.map((item, index) => {
+                  const Icon = item.icon;
+                  const isActive = location.pathname === item.path;
 
-                return (
-                  <motion.div
-                    key={item.path}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * index }}
-                  >
-                    <Link
-                      to={item.path}
-                      className={`relative px-4 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 font-medium ${
-                        isActive
-                          ? isDarkMode ? 'text-yellow-200' : 'text-amber-800'
-                          : isDarkMode
-                            ? 'text-yellow-100 hover:text-yellow-200'
-                            : 'text-amber-700 hover:text-amber-800'
-                      }`}
+                  return (
+                    <motion.div
+                      key={item.path}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 * index }}
                     >
-                      {/* Active background - looks like illuminated manuscript */}
-                      {isActive && (
+                      <Link
+                        to={item.path}
+                        className={`relative px-4 py-2 rounded-full transition-all duration-300 flex items-center space-x-2 font-medium text-sm ${
+                          isActive
+                            ? isDarkMode ? 'text-yellow-200' : 'text-amber-800'
+                            : isDarkMode
+                              ? 'text-yellow-100 hover:text-yellow-200'
+                              : 'text-amber-700 hover:text-amber-800'
+                        }`}
+                      >
+                        {/* Active background */}
+                        {isActive && (
+                          <motion.div
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                              background: isDarkMode
+                                ? 'linear-gradient(135deg, rgba(218, 165, 32, 0.25), rgba(139, 69, 69, 0.15))'
+                                : 'linear-gradient(135deg, rgba(218, 165, 32, 0.3), rgba(139, 69, 69, 0.2))',
+                              boxShadow: `inset 0 1px 0 rgba(var(--accent-color), 0.4), 0 0 15px rgba(var(--accent-color), 0.2)`
+                            }}
+                            layoutId="activeNavTab"
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                          />
+                        )}
+
+                        {/* Hover effect */}
                         <motion.div
-                          className="absolute inset-0 rounded-lg border-2"
+                          className="absolute inset-0 rounded-full opacity-0"
                           style={{
                             background: isDarkMode
-                              ? 'linear-gradient(135deg, rgba(218, 165, 32, 0.15), rgba(139, 69, 69, 0.1))'
-                              : 'linear-gradient(135deg, rgba(218, 165, 32, 0.2), rgba(139, 69, 69, 0.15))',
-                            borderColor: `rgba(var(--accent-color), 0.4)`,
-                            boxShadow: `inset 0 1px 0 rgba(var(--accent-color), 0.3)`
+                              ? 'radial-gradient(circle, rgba(218, 165, 32, 0.1), transparent 70%)'
+                              : 'radial-gradient(circle, rgba(218, 165, 32, 0.15), transparent 70%)'
                           }}
-                          layoutId="activeTab"
-                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
                         />
-                      )}
 
-                      {/* Hover effect */}
-                      <motion.div
-                        className="absolute inset-0 rounded-lg opacity-0"
-                        style={{
-                          background: isDarkMode
-                            ? 'radial-gradient(circle, rgba(218, 165, 32, 0.1), transparent 70%)'
-                            : 'radial-gradient(circle, rgba(218, 165, 32, 0.15), transparent 70%)'
-                        }}
-                        whileHover={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-
-                      <Icon className="w-4 h-4 relative z-10" />
-                      <span className="text-sm relative z-10">{item.label}</span>
-
-                      {/* Active indicator - medieval style */}
-                      {isActive && (
-                        <motion.div
-                          className="absolute -bottom-1 left-1/2 w-2 h-1 rounded-full"
-                          style={{
-                            backgroundColor: `rgb(var(--accent-color))`,
-                            transform: 'translateX(-50%)'
-                          }}
-                          initial={{ scale: 0, width: 0 }}
-                          animate={{ scale: 1, width: 8 }}
-                          exit={{ scale: 0, width: 0 }}
-                        />
-                      )}
-                    </Link>
-                  </motion.div>
-                );
-              })}
+                        <Icon className="w-4 h-4 relative z-10" />
+                        <span className="relative z-10 hidden lg:inline">{item.label}</span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Theme Controls */}
+            {/* Right - Theme Controls */}
             <div className="flex items-center space-x-3">
               {/* Day/Night Toggle */}
               <motion.button
-                className="p-2 rounded-lg border-2 transition-all duration-300"
+                className="p-3 rounded-full border-2 transition-all duration-300"
                 style={{
                   background: isDarkMode
-                    ? 'linear-gradient(135deg, rgba(60, 50, 35, 0.8), rgba(45, 35, 25, 0.9))'
-                    : 'linear-gradient(135deg, rgba(250, 245, 235, 0.9), rgba(240, 230, 210, 0.8))',
-                  borderColor: `rgba(var(--accent-color), 0.4)`
+                    ? 'linear-gradient(135deg, rgba(60, 50, 35, 0.9), rgba(45, 35, 25, 0.95))'
+                    : 'linear-gradient(135deg, rgba(250, 245, 235, 0.95), rgba(240, 230, 210, 0.9))',
+                  borderColor: `rgba(var(--accent-color), 0.5)`,
+                  boxShadow: `0 0 15px rgba(var(--accent-color), 0.1)`
                 }}
                 onClick={toggleDarkMode}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: `0 0 20px rgba(var(--accent-color), 0.2)` }}
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div
@@ -227,27 +238,28 @@ const MedievalNavbar = () => {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
                   {isDarkMode ? (
-                    <Moon className="w-4 h-4" style={{ color: `rgb(var(--accent-color))` }} />
+                    <Moon className="w-5 h-5" style={{ color: `rgb(var(--accent-color))` }} />
                   ) : (
-                    <Sun className="w-4 h-4" style={{ color: `rgb(var(--accent-color))` }} />
+                    <Sun className="w-5 h-5" style={{ color: `rgb(var(--accent-color))` }} />
                   )}
                 </motion.div>
               </motion.button>
 
               {/* Heraldry Color Picker */}
               <motion.button
-                className="p-2 rounded-lg border-2 transition-all duration-300"
+                className="p-3 rounded-full border-2 transition-all duration-300"
                 style={{
                   background: isDarkMode
-                    ? 'linear-gradient(135deg, rgba(60, 50, 35, 0.8), rgba(45, 35, 25, 0.9))'
-                    : 'linear-gradient(135deg, rgba(250, 245, 235, 0.9), rgba(240, 230, 210, 0.8))',
-                  borderColor: `rgba(var(--accent-color), 0.4)`
+                    ? 'linear-gradient(135deg, rgba(60, 50, 35, 0.9), rgba(45, 35, 25, 0.95))'
+                    : 'linear-gradient(135deg, rgba(250, 245, 235, 0.95), rgba(240, 230, 210, 0.9))',
+                  borderColor: `rgba(var(--accent-color), 0.5)`,
+                  boxShadow: `0 0 15px rgba(var(--accent-color), 0.1)`
                 }}
                 onClick={() => setShowThemePanel(!showThemePanel)}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: `0 0 20px rgba(var(--accent-color), 0.2)` }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Shield className="w-4 h-4" style={{ color: `rgb(var(--accent-color))` }} />
+                <Shield className="w-5 h-5" style={{ color: `rgb(var(--accent-color))` }} />
               </motion.button>
             </div>
           </div>

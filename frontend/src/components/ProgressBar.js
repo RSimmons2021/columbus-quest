@@ -21,22 +21,6 @@ const ProgressBar = ({
 
   const percentage = Math.min((value / max) * 100, 100);
 
-  useEffect(() => {
-    if (animated) {
-      const timer = setTimeout(() => {
-        setDisplayValue(percentage);
-        controls.start({
-          width: `${percentage}%`,
-          transition: { duration: 1, ease: 'easeOut' }
-        });
-      }, 100);
-      return () => clearTimeout(timer);
-    } else {
-      setDisplayValue(percentage);
-      controls.start({ width: `${percentage}%` });
-    }
-  }, [percentage, animated, controls]);
-
   const heights = {
     thin: 'h-1',
     small: 'h-2',
@@ -75,8 +59,58 @@ const ProgressBar = ({
       bg: 'bg-gradient-to-r from-pink-500 via-purple-500 via-blue-500 via-green-500 to-yellow-500',
       glow: 'shadow-purple-500/50',
       light: 'bg-gray-100'
+    },
+    // Medieval theme colors
+    gold: {
+      bg: 'bg-gradient-to-r from-yellow-600 to-amber-500',
+      glow: 'shadow-yellow-500/50',
+      light: 'bg-yellow-50'
+    },
+    bronze: {
+      bg: 'bg-gradient-to-r from-amber-700 to-orange-600',
+      glow: 'shadow-amber-600/50',
+      light: 'bg-amber-50'
+    },
+    emerald: {
+      bg: 'bg-gradient-to-r from-emerald-500 to-green-600',
+      glow: 'shadow-emerald-500/50',
+      light: 'bg-emerald-50'
+    },
+    ruby: {
+      bg: 'bg-gradient-to-r from-red-600 to-rose-600',
+      glow: 'shadow-red-500/50',
+      light: 'bg-red-50'
+    },
+    sapphire: {
+      bg: 'bg-gradient-to-r from-blue-600 to-indigo-600',
+      glow: 'shadow-blue-500/50',
+      light: 'bg-blue-50'
+    },
+    silver: {
+      bg: 'bg-gradient-to-r from-gray-400 to-slate-500',
+      glow: 'shadow-gray-400/50',
+      light: 'bg-gray-100'
     }
   };
+
+  // Fallback to blue if color doesn't exist
+  const colorTheme = colors[color] || colors.blue;
+
+  useEffect(() => {
+    if (animated) {
+      const timer = setTimeout(() => {
+        setDisplayValue(percentage);
+        controls.start({
+          width: `${percentage}%`,
+          transition: { duration: 1, ease: 'easeOut' }
+        });
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      setDisplayValue(percentage);
+      controls.start({ width: `${percentage}%` });
+    }
+  }, [percentage, animated, controls]);
 
   const stripeAnimation = {
     animate: {
@@ -151,13 +185,13 @@ const ProgressBar = ({
 
       {/* Progress Bar Container */}
       <div
-        className={`w-full ${heights[height]} ${colors[color].light} rounded-full relative overflow-hidden ${
-          glow ? `shadow-lg ${colors[color].glow}` : 'shadow-sm'
+        className={`w-full ${heights[height]} ${colorTheme.light} rounded-full relative overflow-hidden ${
+          glow ? `shadow-lg ${colorTheme.glow}` : 'shadow-sm'
         }`}
       >
         {/* Animated Progress Fill */}
         <motion.div
-          className={`${heights[height]} ${colors[color].bg} rounded-full relative overflow-hidden ${
+          className={`${heights[height]} ${colorTheme.bg} rounded-full relative overflow-hidden ${
             glow ? 'shadow-md' : ''
           }`}
           initial={{ width: '0%' }}

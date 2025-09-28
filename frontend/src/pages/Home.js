@@ -254,13 +254,13 @@ function Home() {
               {
                 to: '/leaderboard',
                 icon: Trophy,
-                title: 'Hall of Fame',
+                title: 'Leaderboard',
                 description: 'View the greatest explorers and their achievements'
               },
               {
                 to: '/progress',
                 icon: BarChart3,
-                title: 'Personal Chronicle',
+                title: 'Progress',
                 description: 'Track your journey and conquered territories'
               }
             ].map((service, index) => {
