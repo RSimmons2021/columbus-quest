@@ -24,9 +24,9 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Clear invalid token and redirect to login
+      // Clear invalid token; do not redirect because we have no /login route in this app
       localStorage.removeItem('authToken');
-      window.location.href = '/login';
+      // Optionally: show a toast or set a global flag instead of redirecting
     }
     return Promise.reject(error);
   }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Home, Map, Trophy, BarChart3, Scroll, Moon, Sun, Shield } from 'lucide-react';
+import { Home, Map, Trophy, BarChart3, Scroll, Moon, Sun, Shield, BookOpen } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const MedievalNavbar = () => {
@@ -24,6 +24,7 @@ const MedievalNavbar = () => {
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/quests', label: 'Quest Board', icon: Scroll },
+    { path: '/news', label: 'Chronicles', icon: BookOpen },
     { path: '/map', label: 'Map', icon: Map },
     { path: '/progress', label: 'Progress', icon: BarChart3 },
     { path: '/leaderboard', label: 'Leaderboard', icon: Trophy }

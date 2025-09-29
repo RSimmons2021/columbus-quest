@@ -1,0 +1,10 @@
+{
+  "short_name": "ColumbusQuest",
+  "name": "Columbus Quest",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1f1912",
+  "theme_color": "#daa520",
+  "description": "Medieval-themed kiosk app with quests and RSS news.",
+  "icons": []
+}

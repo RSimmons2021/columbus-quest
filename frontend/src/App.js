@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import './App.css';
 import './styles/futuristic.css';
@@ -16,6 +16,8 @@ import QuestDetail from './pages/QuestDetail';
 import MapView from './pages/MapView';
 import Progress from './pages/Progress';
 import Leaderboard from './pages/Leaderboard';
+import News from './pages/News';
+import NewsDetail from './pages/NewsDetail';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -29,6 +31,9 @@ function AnimatedRoutes() {
         <Route path="/map" element={<MapView />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/news/:id" element={<NewsDetail />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
   );
