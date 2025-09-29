@@ -9,9 +9,21 @@ class Article < ApplicationRecord
   scope :recent, -> { order(published_at: :desc, created_at: :desc) }
   scope :published_after, ->(date) { where('published_at > ?', date) }
 
-  # PostgreSQL full-text search
+  # PostgreSQL full-text search with fuzzy fallback
   scope :search, ->(query) {
-    where("to_tsvector('english', title || ' ' || coalesce(description, '') || ' ' || coalesce(content, '')) @@ plainto_tsquery('english', ?)", query)
+    return all if query.blank?
+
+    # Try full-text search first
+    full_text_results = where("to_tsvector('english', title || ' ' || coalesce(description, '') || ' ' || coalesce(content, '')) @@ plainto_tsquery('english', ?)", query)
+
+    # If no results, fall back to ILIKE pattern matching for partial/fuzzy matching
+    if full_text_results.exists?
+      full_text_results
+    else
+      fuzzy_pattern = "%#{query.downcase}%"
+      where("lower(title) LIKE ? OR lower(description) LIKE ? OR lower(content) LIKE ?",
+            fuzzy_pattern, fuzzy_pattern, fuzzy_pattern)
+    end
   }
 
   def read_by?(session_id)
