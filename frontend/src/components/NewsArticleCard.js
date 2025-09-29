@@ -90,38 +90,55 @@ const NewsArticleCard = ({
               )}
             </div>
 
-            {preview ? (
-              <p className="text-sm mt-2 line-clamp-3 opacity-90">
-                {preview}
-              </p>
-            ) : (
-              <p className="text-sm mt-2 italic opacity-70">
-                No preview available. Click 'Read more' to view the full article.
-              </p>
-            )}
-
-            <div className="mt-3 flex items-center gap-3 text-sm">
-              <button
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded border hover:opacity-90 transition-opacity"
-                style={{ 
-                  borderColor: 'rgba(var(--accent-color), 0.5)',
-                  backgroundColor: 'rgba(var(--accent-color), 0.1)'
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleClick();
-                }}
-              >
-                Read more
-              </button>
-              <a
-                href={article.url}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 hover:underline opacity-90"
-              >
-                Open source <ExternalLink className="w-4 h-4" />
-              </a>
+            <div className="mt-2">
+              {preview ? (
+                <div>
+                  <p className="text-sm opacity-90 mb-3">
+                    {preview}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <button
+                      className="inline-flex items-center gap-1 px-3 py-1 rounded border hover:opacity-90 transition-opacity"
+                      style={{ 
+                        borderColor: 'rgba(var(--accent-color), 0.5)',
+                        backgroundColor: 'rgba(var(--accent-color), 0.1)'
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleClick();
+                      }}
+                    >
+                      Read more
+                    </button>
+                    <a
+                      href={article.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 hover:underline opacity-90 text-sm"
+                    >
+                      View original <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center flex-wrap gap-1">
+                  <span className="text-sm italic opacity-70">No preview available. Click</span>
+                  <button
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded border hover:opacity-90 transition-opacity"
+                    style={{ 
+                      borderColor: 'rgba(var(--accent-color), 0.5)',
+                      backgroundColor: 'rgba(var(--accent-color), 0.1)'
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleClick();
+                    }}
+                  >
+                    Read more
+                  </button>
+                  <span className="text-sm italic opacity-70">to view the full article.</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

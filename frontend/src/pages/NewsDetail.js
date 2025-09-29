@@ -77,7 +77,15 @@ const NewsDetail = () => {
             {/* Prefer content, fallback to description */}
             <div className="prose max-w-none mt-6 opacity-95">
               {article.content ? (
-                <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                <div 
+                  dangerouslySetInnerHTML={{ 
+                    __html: article.content.replace(
+                      // Remove any duplicate image that matches the main article image
+                      new RegExp(`<img[^>]*src=["']${article.image_url}["'][^>]*>`, 'i'),
+                      ''
+                    )
+                  }} 
+                />
               ) : (
                 <p>{article.description}</p>
               )}
