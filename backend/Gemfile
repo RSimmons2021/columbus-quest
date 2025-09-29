@@ -19,6 +19,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rack-cors'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
+gem 'dotenv-rails', groups: [:development, :test]
+
+# RSS feed functionality
+gem 'rss', '~> 0.3.0'
+gem 'kaminari', '~> 1.2'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

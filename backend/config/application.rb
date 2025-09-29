@@ -31,5 +31,9 @@ module Backend
 
     # Only loads the plugins your API depends on
     config.api_only = true
+
+    # Enable sessions for API
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_columbus_quest_session'
   end
 end

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  include ActionController::Cookies
 
   private
 
@@ -20,9 +20,5 @@ class ApplicationController < ActionController::API
 
   def current_user
     @current_user
-  end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :first_name, :last_name])
   end
 end

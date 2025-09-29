@@ -34,7 +34,30 @@ Rails.application.routes.draw do
 
       # Leaderboard
       get '/leaderboard', to: 'leaderboard#index'
+
+      # RSS Articles
+      resources :articles, only: [:index, :show] do
+        member do
+          patch :mark_as_read
+        end
+      end
+
+      # RSS Feeds
+      resources :feeds, only: [:index] do
+        member do
+          post :refresh
+        end
+
+        collection do
+          post :refresh_all
+        end
+      end
     end
+  end
+
+  # Admin interface for RSS feeds
+  namespace :admin do
+    resources :feeds
   end
 
   # Defines the root path route ("/")

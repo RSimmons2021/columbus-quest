@@ -49,4 +49,26 @@ art_checkpoints = [
 art_checkpoints.each { |data| art_quest.checkpoints.create!(data) }
 
 puts "Created quest: #{art_quest.name} with #{art_quest.checkpoints.count} checkpoints"
+
+# Create RSS feeds
+Feed.destroy_all
+
+atlas_obscura = Feed.create!(
+  name: "Atlas Obscura",
+  url: "https://www.atlasobscura.com/feeds/latest",
+  description: "Curious and wondrous travel destinations",
+  active: true,
+  refresh_interval: 3600 # 1 hour
+)
+
+puts "Created RSS feed: #{atlas_obscura.name}"
+
+# Try to fetch initial articles
+begin
+  atlas_obscura.fetch_and_parse!
+  puts "Successfully fetched articles from Atlas Obscura"
+rescue => e
+  puts "Warning: Could not fetch initial articles: #{e.message}"
+end
+
 puts "Seed data complete!"
